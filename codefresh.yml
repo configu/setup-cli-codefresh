@@ -1,0 +1,7 @@
+version: "1.0"
+steps:
+  run_configu_cli:
+    title: Running Configu CLI inside Docker
+    image: configu/cli
+    commands:
+      - configu --help

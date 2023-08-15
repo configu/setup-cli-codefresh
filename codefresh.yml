@@ -4,8 +4,10 @@ steps:
     title: Running Configu CLI inside Docker
     image: configu/cli
     environment:
-      - CONFIGU_ORG=${{CONFIGU_ORG}}
-      - CONFIGU_TOKEN=${{CONFIGU_TOKEN}}
+      - "CONFIGU_ORG=${{CONFIGU_ORG}}"
+      - "CONFIGU_TOKEN=${{CONFIGU_TOKEN}}"
     commands:
+      - echo ${{CONFIGU_ORG}}
+      - echo $CONFIGU_ORG
       - configu --version
       - configu eval --store 'configu' --set 'test/codefresh' --schema 'setup-cli-codefresh.cfgu.json'

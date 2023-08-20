@@ -16,6 +16,6 @@ steps:
     commands:
       # - echo ${{CONFIGU_ORG}}
       - echo $CONFIGU_ORG
-      - ls -al /codefresh/volume
+      - ls -al /codefresh/volume/${{CF_REPO_NAME}}/setup-cli-codefresh.cfgu.json
       - configu --version
-      - CONFIGU_ORG=abc configu eval --store 'configu' --set 'test/codefresh' --schema 'setup-cli-codefresh.cfgu.json'
+      - CONFIGU_ORG=abc configu eval --store 'configu' --set 'test/codefresh' --schema '/codefresh/volume/${{CF_REPO_NAME}}/setup-cli-codefresh.cfgu.json'

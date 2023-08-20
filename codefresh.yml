@@ -1,5 +1,12 @@
 version: "1.0"
 steps:
+  main_clone:
+    title: "Cloning repository"
+    type: git-clone
+    repo: "${{CF_REPO_OWNER}}/${{CF_REPO_NAME}}"
+    revision: "${{CF_REVISION}}"
+    git: github
+
   run_configu_cli:
     title: Running Configu CLI inside Docker
     image: configu/cli
@@ -9,6 +16,6 @@ steps:
     commands:
       # - echo ${{CONFIGU_ORG}}
       - echo $CONFIGU_ORG
-      - ls  /codefresh/volume
+      - ls -al /codefresh/volume/${{CF_REPO_OWNER}}/${{CF_REPO_NAME}}
       - configu --version
       - CONFIGU_ORG=abc configu eval --store 'configu' --set 'test/codefresh' --schema 'setup-cli-codefresh.cfgu.json'

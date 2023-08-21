@@ -10,11 +10,19 @@ steps:
   run_configu_cli:
     title: Running Configu CLI inside Docker
     image: configu/cli
+    environment:
+      - CONFIGU_SET: "test/codefresh"
     commands:
       - configu --version
       - |
+        configu upsert \
+          --store 'configu' \
+          --set "${{CONFIGU_SET}}" \
+          --schema '/codefresh/volume/${{CF_REPO_NAME}}/.cfgu.json' \
+          --config 'CI_CD_NAME=Codefresh'
+      - |
         configu eval \
           --store 'configu' \
-          --set 'test/codefresh' \
+          --set "${{CONFIGU_SET}}" \
           --schema '/codefresh/volume/${{CF_REPO_NAME}}/.cfgu.json' \
         | configu export --explain

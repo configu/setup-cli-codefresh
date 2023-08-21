@@ -1,11 +1,11 @@
 # configu/setup-cli-codefresh
 
-[![pipeline status](https://gitlab.com/configu1/setup-cli-gitlab-ci/badges/main/pipeline.svg)](https://gitlab.com/configu1/setup-cli-gitlab-ci/-/commits/main) [![Latest Release](https://gitlab.com/configu1/setup-cli-gitlab-ci/-/badges/release.svg)](https://gitlab.com/configu1/setup-cli-gitlab-ci/-/releases)
+[![Codefresh build status]( https://g.codefresh.io/api/badges/pipeline/configu/setup-cli-codefresh%2Fsetup-cli-codefresh?type=cf-1&key=eyJhbGciOiJIUzI1NiJ9.NjRjYTlkOTYzNmQzNzJmNzI0ZGVhNjlk.XQdQn6kqcCVdKxS58aZ7W5Xs4EKUOPM4jOffc_FlQbk)]( https://g.codefresh.io/pipelines/edit/new/builds?id=64caa99af66f1518afd38547&pipeline=setup-cli-codefresh&projects=setup-cli-codefresh&projectId=64ca9deacf5a1d0611eed016)
 
+The `configu/setup-cli-codefresh` project contains a `typed plugin` that sets up Configu CLI in your `Codefresh pipelines` workflow by downloading a specific version of Configu CLI and adding it to the `PATH`.
 
-The configu/setup-cli-gitlab-ci project contains a .yml template that sets up Configu CLI in your GitLab CI/CD workflow by downloading a specific version of Configu CLI and adding it to the `PATH`.
-
-After you've included and extended the template, subsequent steps in the same job can run arbitrary Configu CLI commands. All of Configu commands work exactly like they do on your local command line.
+After you've used the plugin, subsequent `commands` in the same `step` can run arbitrary Configu CLI commands.
+All of Configu commands work exactly like they do on your local command line.
 
 ## Usage
 

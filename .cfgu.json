@@ -1,0 +1,7 @@
+{
+  "CI_CD_NAME": {
+    "type": "String",
+    "required": true,
+    "description": "Test Configu CLI with"
+  }
+}

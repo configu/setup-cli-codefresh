@@ -13,14 +13,13 @@ steps:
     environment:
       - CONFIGU_SET=test/codefresh
     commands:
-      - echo $CONFIGU_SET
       - configu --version
-      - |
-        configu upsert \
-          --store 'configu' \
-          --set $CONFIGU_SET \
-          --schema '/codefresh/volume/${{CF_REPO_NAME}}/.cfgu.json' \
-          --config 'CI_CD_NAME=Codefresh'
+      # - |
+      #   configu upsert \
+      #     --store 'configu' \
+      #     --set $CONFIGU_SET \
+      #     --schema '/codefresh/volume/${{CF_REPO_NAME}}/.cfgu.json' \
+      #     --config 'CI_CD_NAME=Codefresh'
       - |
         configu eval \
           --store 'configu' \

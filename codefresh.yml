@@ -11,7 +11,7 @@ steps:
     title: Running Configu CLI inside Docker
     image: configu/cli
     environment:
-      - CONFIGU_SET: "test/codefresh"
+      - CONFIGU_SET="test/codefresh"
     commands:
       - configu --version
       - |

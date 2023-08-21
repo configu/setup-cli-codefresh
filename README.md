@@ -12,53 +12,55 @@ All of Configu commands work exactly like they do on your local command line.
 The default configuration installs the latest version of Configu CLI.
 
 ```yaml
-include:
-  - remote: 'https://gitlab.com/configu1/setup-cli-gitlab-ci/-/raw/main/configu.gitlab-ci.yml'
-
-some-job:
-  stage: deploy
-  extends: .configu/setup-cli
-  script:
-    - echo "use configu cli here"
+workflow:
+  configu_export:
+    title: Export configurations
+    type: configu
+    arguments:
+      COMMANDS:
+        - configu --version
+        - configu eval --store 'configu' --set 'test/codefresh' --schema '/codefresh/volume/${{CF_REPO_NAME}}/.cfgu.json' | configu export
 ```
 
 A specific version of Configu CLI can be installed.
 
 ```yaml
-some-job:
-  stage: deploy
-  extends: .configu/setup-cli
-  variables:
-    version: "0.4.4"
-  script:
-    - configu --version
+workflow:
+  configu_version:
+    title: Install specific version of Configu CLI
+    type: configu
+    arguments:
+      VERSION: 0.12.5
+      COMMANDS:
+        - configu --version
 ```
 
 Credentials for `Configu store` ([app.configu.com](https://app.configu.com/)) can be configured.
 
-1. In your Configu organization, go to Settings > Access Tokens
-2. Create a new Access token and copy its value
-3. In your GitLab project, go to to Settings > CI/CD > Variables 
+1. In your `Configu platform organization`, go to `Settings > Access Tokens`
+2. Create a `new Access` token and `copy its value`
+3. In your `Codefresh project`, go to to `Projects > Settings > Variables`
 4. Create a new CONFIGU_ORG variable with your Configu Organization id
-5. Create a new CONFIGU_TOKEN variable with the Access Token value you copied in step 2, make sure to enable "Mask variable" option.
+5. Create a new CONFIGU_TOKEN variable with the Access Token value you copied in step 2, make sure to enable `"Encrypt Value"`.
 
-```yaml
+<!-- ```yaml
 some-job:
   stage: deploy
   extends: .configu/setup-cli
   script:
     - configu export --store "configu://-" --set "production" --schema "path/to/schema.cfgu.json"
-```
+``` -->
 
 ## Variables
 
-The template supports the [following variables](https://gitlab.com/configu1/setup-cli-gitlab-ci/-/blob/main/configu.gitlab-ci.yml#L1).
+The plugin supports the [following inputs](https://github.com/configu/setup-cli-codefresh/blob/main/configu-step.yml#L34).
+
 
 ## License
 
-This orb is licensed under [Apache License 2.0](https://gitlab.com/configu1/setup-cli-gitlab-ci/-/blob/main/LICENSE).
+This plugin is licensed under [Apache License 2.0](https://gitlab.com/configu1/setup-cli-gitlab-ci/-/blob/main/LICENSE).
 
 ## References
-- [Configu SaaS platform (app.configu.com)](https://app.configu.com/)
+- [Configu platform (app.configu.com)](https://app.configu.com/)
 - [Configu Documentation](https://configu.com/docs)
-- [GitLab CI/CD Documentation](https://docs.gitlab.com/ee/ci/)
+- [Codefresh Documentation](https://codefresh.io/docs/)

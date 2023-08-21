@@ -29,7 +29,7 @@ metadata:
           arguments:
             COMMANDS:
               - configu --version
-              - configu eval --store 'configu' --set 'test/codefresh'  --schema '/codefresh/volume/${{CF_REPO_NAME}}/.cfgu.json' | configu export
+              - configu eval --store 'configu' --set 'test/codefresh' --schema '/codefresh/volume/${{CF_REPO_NAME}}/.cfgu.json' | configu export
 spec:
   arguments: |-
     {
@@ -42,19 +42,24 @@ spec:
         "COMMANDS",
       ],
       "properties": {
+        "VERSION": {
+          "type": "string",
+          "description": "The version of Configu CLI to install. A value of `latest` will install the latest version of Configu CLI. Defaults to `latest`.",
+          "default": "latest"
+        },
         "COMMANDS": {
           "type": "array",
           "items": {
             "type": "string"
           },
-          "description": "Commands to execute Example: https://vault.testdomain.io:8200 (required)"
+          "description": "Commands to execute. Example: https://vault.testdomain.io:8200. (required)"
         }
       }
     }
   stepsTemplate: |-
     main:
       name: configu
-      image: configu/cli
+      image: configu/cli:[[.Arguments.VERSION]]
       commands:
       [[ range $arg := .Arguments.COMMANDS ]]
         - '[[ $arg ]]'
